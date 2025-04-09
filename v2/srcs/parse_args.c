@@ -2,7 +2,7 @@
 
 void get_flags(t_data *data, int argc, char **argv) {
     int i = 1;
-    int c = 0; // count args that are flags
+    int c = 0;
     
     while (argv[i] && ft_strlen(argv[i]) >= 2 && argv[i][0] == '-') {
         c++;
@@ -12,6 +12,7 @@ void get_flags(t_data *data, int argc, char **argv) {
     i = 1;
     int fc = 0;
     char tmp[1024];
+    data->nb_argv_flags = c;
 
     while (argv[i] && ft_strlen(argv[i]) >= 2 && argv[i][0] == '-') {
         int j = 1;
@@ -37,7 +38,7 @@ void get_flags(t_data *data, int argc, char **argv) {
                 write(1, "'\n", 2);
                 write(1, "usage: ls [-altrR] [file ...]", 29);
 
-                ft_clean_exit(data);
+                clean_exit(data);
             }
             j++;
         }
@@ -84,7 +85,6 @@ void parse_args(t_data *data, int argc, char **argv) {
     if (argc == 1) {
         data->nb_args = 0;
         data->nb_flags = 0;
-        ft_basic_ls(".");
     } else {
         if (ft_strlen(argv[1]) > 1 && argv[1][0] == '-') {
             get_flags(data, argc, argv);

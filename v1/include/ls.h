@@ -26,11 +26,12 @@ typedef struct s_repo {
 } t_repo;
 
 typedef struct s_data {
-    char *flags; // v
-    int nb_flags; // v
-    int nb_args; // v
-    char **args; // v
-    t_repo *repos; // f
+    char *flags;
+    int nb_flags;
+    int nb_args;
+    int nb_argv_flags;
+    char **args;
+    t_repo *repos;
 } t_data;
 
 
@@ -38,7 +39,7 @@ typedef struct s_data {
 void parse_args(t_data *data, int argc, char **argv);
 
 // ft_ls.c
-bool ft_basic_ls(const char *file);
+bool ft_basic_ls(const char *file, int argc, bool reverse);
 
 // print_data.c
 void print_data(t_data *data); // For debug must be removed
@@ -47,6 +48,20 @@ void print_data(t_data *data); // For debug must be removed
 int ft_strlen(const char *str);
 char *ft_strdup(char *str);
 void bubble_sort(char **arr, int n);
+bool has_flag(t_data *data, char flag);
 
 // ft_clean_exit.c
 void ft_clean_exit(t_data *data);
+
+/*
+    basic ls works (with no arg or multiple args)
+    no flags implemented yet
+*/
+
+/*
+    malloc:
+        -data
+        -data->args
+        -data->flags
+        -data->args[i]
+*/

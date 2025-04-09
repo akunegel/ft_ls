@@ -21,8 +21,7 @@ char *ft_strdup(char *str) {
     return new;
 }
 
-int	ft_strcmp(const char *s1, const char *s2)
-{
+int	ft_strcmp(const char *s1, const char *s2) {
 	unsigned int	i;
 
 	i = 0;
@@ -35,14 +34,10 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return (0);
 }
 
-void bubble_sort(char **arr, int n) {
-    for (int i = 0; i < n - 1; i++) {
-        for (int j = 0; j < n - i - 1; j++) {
-            if (ft_strcmp(arr[j], arr[j + 1]) > 0) {
-                char *temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
-            }
-        }
+bool has_flag(t_data *data, char flag) {
+    for (int i = 0; data->flags[i]; i++) {
+        if (data->flags[i] == flag)
+            return true;
     }
+    return false;
 }
